@@ -1,0 +1,138 @@
+/* ====== Gaya Dasar (Berlaku untuk semua halaman) ====== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #282a36, #5a67d8);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ====== Gaya untuk Halaman Hubungi ====== */
+body.hubungi {
+    background: linear-gradient(135deg, #282a36, #5a67d8);
+}
+
+body.hubungi .container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+body.hubungi form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.hubungi input, body.hubungi textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+body.hubungi button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #5a67d8, #282a36);
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.hubungi button:hover {
+    background: linear-gradient(45deg, #282a36, #5a67d8);
+    transform: scale(1.05);
+}
+
+/* ====== Gaya untuk Halaman Terms ====== */
+body.terms {
+    background-color: #1e1e2e;
+}
+
+body.terms header {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+body.terms nav {
+    background-color: #2a2a3a;
+    padding: 10px;
+    text-align: center;
+}
+
+body.terms nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+body.terms nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+body.terms nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+body.terms main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+body.terms .card {
+    background-color: #2a2a3a;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+body.terms h2, body.terms h3 {
+    color: #6a11cb;
+}
+
+/* ====== Footer (Berlaku untuk semua halaman) ====== */
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.footer.hidden {
+    opacity: 0;
+    transform: translateY(100%);
+    pointer-events: none;
+}

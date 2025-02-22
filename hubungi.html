@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Admin - ZeenPay</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hubungi Admin</h1>
+    </header>
+    
+    <div class="container">
+        <p>Silakan isi formulir di bawah untuk menghubungi admin melalui WhatsApp.</p>
+
+        <form id="whatsappForm">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" placeholder="Tulis pesan Anda" required></textarea>
+
+            <button type="submit">Kirim Pesan</button>
+        </form>
+
+        <a href="index.html" class="back-link">Kembali ke Halaman Utama</a>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024-2025 ZeenPay | Semua Hak Dilindungi</p>
+        <script>
+          const footer = document.querySelector(".footer");
+
+window.addEventListener("resize", () => {
+    if (window.innerHeight < 500) { // Deteksi jika keyboard muncul (ketinggian viewport berkurang)
+        footer.classList.add("hidden");
+    } else {
+        footer.classList.remove("hidden");
+    }
+});
+        </script>
+    </footer>
+
+    <script>
+        document.getElementById("whatsappForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let message = document.getElementById("message").value;
+            let phoneNumber = "6281226448082"; // Ganti dengan nomor admin
+
+            let whatsappURL = `https://wa.me/${phoneNumber}?text=Halo%20Admin%2C%20saya%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
+
+            window.open(whatsappURL, "_blank");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html><html lang="id"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zeenpay - Pembayaran</title>
+
+    <!-- Meta tags -->
+    <meta name="title" content="zeenpay - Layanan Pembayaran">
+    <meta name="description" content="Pembayaran layanan yang aman dan terpercaya.">
+    <meta name="keywords" content="pembayaran">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="author" content="zeenpay">
+
+    <!-- CSS -->
+    <link href="k1I6h3sspH15.css" rel="stylesheet">
+    <link rel="stylesheet" href="NpZIOqiTsPMi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      :root {
+        --primary-blue: #1e3a8a;
+        --dark-blue: #0f172a;
+        --light-blue: #3b82f6;
+        --accent-blue: #60a5fa;
+      }
+      
+      .container {
+  max-width: 1200px; /* Menyesuaikan agar tidak terlalu melebar di layar besar */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.glass-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.payment-button {
+  width: 100%; /* Tombol tidak terlalu lebar */
+  max-width: 400px;
+}
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to bottom right, var(--dark-blue), #000000);
+        min-height: 100vh;
+      }
+
+      .container .grid {
+        padding: 20px 0;
+      }
+
+      .glass-effect {
+        background: rgba(30, 58, 138, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(30, 58, 138, 0.2);
+      }
+
+      .glass-card {
+        background: rgba(30, 58, 138, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(30, 58, 138, 0.2);
+        transition: all 0.3s ease;
+        transform: perspective(1000px) rotateX(5deg);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6),
+          0 5px 10px rgba(0, 0, 0, 0.5);
+        padding: 1.25rem;
+      }
+
+      .glass-card:hover {
+        transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+        background: rgba(30, 58, 138, 0.2);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.7),
+          0 10px 15px rgba(0, 0, 0, 0.6);
+      }
+
+      .glass-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        border-radius: 0.75rem;
+        pointer-events: none;
+      }
+
+      .glass-card .gradient-text {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          45deg,
+          var(--accent-blue),
+          var(--light-blue)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .payment-button {
+        background: linear-gradient(
+          45deg,
+          var(--primary-blue),
+          var(--light-blue)
+        );
+        color: white;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .payment-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        background: linear-gradient(
+          45deg,
+          var(--light-blue),
+          var(--primary-blue)
+        );
+      }
+
+      .glass-notification {
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        background: rgba(15, 23, 42, 0.95) !important;
+        border: 1px solid rgba(59, 130, 246, 0.3) !important;
+        border-radius: 1.25rem !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+          inset 0 0 32px rgba(59, 130, 246, 0.1) !important;
+      }
+
+      .notification-title {
+        color: var(--accent-blue) !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+      }
+
+      .notification-message {
+        color: #e2e8f0 !important;
+      }
+
+      .notification-icon {
+        background: rgba(59, 130, 246, 0.15) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
+          inset 0 0 8px rgba(59, 130, 246, 0.2) !important;
+      }
+
+      nav a {
+        color: #e2e8f0;
+      }
+
+      nav a:hover {
+        color: var(--accent-blue);
+      }
+
+      footer {
+        background: rgba(15, 23, 42, 0.8);
+      }
+
+      .payment-icon {
+        width: 80px;
+        height: auto;
+        margin-right: 12px;
+      }
+
+      #qr-code {
+        width: 190px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        border: 5px solid var(--light-blue);
+        border-radius: 10px;
+        background: rgba(59, 130, 246, 0.1);
+        filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+        transition: all 0.3s ease;
+      }
+
+      #qr-code:hover {
+        border-color: var(--accent-blue);
+        filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.4));
+        transform: scale(1.02);
+      }
+
+      .glass-card p {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+      }
+
+      @keyframes slideInAndGlow {
+        0% {
+          transform: translateX(100%);
+          opacity: 0;
+          box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-image {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar Desktop -->
+    <nav class="hidden lg:flex fixed w-full glass-effect z-50">
+      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <span class="text-2xl font-bold gradient-text">Pembayaran</span>
+        <div class="flex space-x-8">
+          <a href="hubungi.html" class="text-gray-300 hover:text-blue-300 transition">
+            <i class="fas fa-headset text-lg mr-2"></i>Help
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Navbar Mobile -->
+    <nav class="lg:hidden fixed bottom-0 w-full glass-effect z-50">
+      <div class="flex justify-around py-4">
+        <a href="hubungi.html" class="flex flex-col items-center text-gray-300 hover:text-blue-300">
+          <i class="fas fa-headset text-xl"></i>
+          <span class="text-xs mt-1">Help</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-24 lg:pt-32 pb-20">
+      <div class="container mx-auto px-6 text-center">
+        <img src="fp-g.png" alt="zeenpay" class="hero-image mx-auto mb-8">
+        <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <span class="gradient-text">Pilih Metode Pembayaran</span>
+        </h1>
+        <p class="text-xl text-blue-100 opacity-90">
+          Pilih metode pembayaran yang Anda inginkan untuk melanjutkan transaksi
+        </p>
+      </div>
+    </header>
+
+    <!-- Payment Methods -->
+   <section class="py-20">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- DANA -->
+      <div class="glass-card rounded-xl">
+        <div class="flex items-center mb-3">
+          <img src="ic-dana.png" alt="DANA" class="payment-icon">
+          <h3 class="text-xl font-bold gradient-text"></h3>
+        </div>
+        <p class="text-gray-300">Transfer melalui DANA untuk proses lebih cepat</p>
+        <button onclick="copyNumber('085176827402', 'DANA')" class="payment-button">
+          <span class="material-symbols-outlined mr-2">content_copy</span>Salin Nomor
+        </button>
+      </div>
+
+      <!-- Gopay -->
+      <div class="glass-card rounded-xl">
+        <div class="flex items-center mb-3">
+          <img src="ic-gopay.png" alt="Gopay" class="payment-icon">
+          <h3 class="text-xl font-bold gradient-text"></h3>
+        </div>
+        <p class="text-gray-300">Transfer instan melalui Gopay</p>
+        <button onclick="copyNumber('085176827402', 'Gopay')" class="payment-button">
+          <span class="material-symbols-outlined mr-2">content_copy</span>Salin Nomor
+        </button>
+      </div>
+
+      <!-- OVO -->
+      <div class="glass-card rounded-xl">
+        <div class="flex items-center mb-3">
+          <img src="ic-ovo.png" alt="OVO" class="payment-icon">
+          <h3 class="text-xl font-bold gradient-text"></h3>
+        </div>
+        <p class="text-gray-300">Transfer instan melalui OVO</p>
+        <button onclick="copyNumber('085176827402', 'OVO')" class="payment-button">
+          <span class="material-symbols-outlined mr-2">content_copy</span>Salin Nomor
+        </button>
+      </div>
+
+      <!-- VIRTUAL ACCOUNT -->
+      <div class="glass-card rounded-xl p-4">
+        <div class="flex items-center mb-3">
+          <img src="ic-bank.png" alt="VIRTUAL ACCOUNT" class="payment-icon">
+          <div>
+            <p class="text-gray-300">Silakan pilih metode pembayaran</p>
+          </div>
+        </div>
+
+        <!-- Pilihan E-Wallet -->
+        <div id="ewalletSelection">
+          <button onclick="selectEwallet('OVO')" class="payment-button">
+            <span class="material-symbols-outlined mr-2">account_balance_wallet</span> VIRTUAL ACCOUNT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Pilihan Bank (Muncul Setelah Pilih OVO) -->
+  <div id="bankSelection" class="hidden mt-3">
+    <p class="text-gray-300">Pilih Bank Pengirim:</p>
+    <input type="text" id="searchBank" onkeyup="filterBanks()" placeholder="Cari bank..." class="search-input">
+    <div id="bankList"></div>
+  </div>
+
+  <!-- Tampilan VA yang Dipilih -->
+  <div id="vaContainer" class="hidden mt-3 p-3 border rounded-lg bg-gray-800 text-white">
+    <p id="selectedBank" class="font-bold"></p>
+    <p id="selectedVA" class="text-lg"></p>
+    <button onclick="copyVA()" class="mt-2 payment-button">
+      <i class="fas fa-copy mr-2"></i> Salin Nomor VA
+    </button>
+  </div>
+</div>
+
+<style>
+  .payment-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .payment-button:hover {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+  }
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+    background: #333;
+    color: white;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const phoneNumber = "085176827402"; // Ganti dengan nomor HP kamu
+
+  const ovoVA = [
+    { name: "BCA", va: "39358" + phoneNumber },
+    { name: "Mandiri", va: "60001" + phoneNumber },
+    { name: "BNI", va: "87400" + phoneNumber },
+    { name: "BRI", va: "88099" + phoneNumber },
+    { name: "CIMB Niaga", va: "8099" + phoneNumber },
+    { name: "Permata", va: "84" + phoneNumber },
+    { name: "Bank Lain", va: "88099" + phoneNumber }
+  ];
+
+  function autoScrollTo(elementId) {
+    setTimeout(() => {
+        document.getElementById(elementId).scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+  }
+
+  function selectEwallet(wallet) {
+    if (wallet === "OVO") {
+      document.getElementById("bankSelection").classList.remove("hidden");
+      renderBanks();
+      autoScrollTo("bankSelection");
+    }
+  }
+
+  function renderBanks() {
+    let bankList = document.getElementById("bankList");
+    bankList.innerHTML = "";
+    ovoVA.forEach(method => {
+      let button = document.createElement("button");
+      button.innerText = method.name;
+      button.classList.add("payment-button");
+      button.onclick = () => selectBank(method.name, method.va);
+      bankList.appendChild(button);
+    });
+  }
+
+  function selectBank(bankName, vaNumber) {
+    document.getElementById("selectedBank").innerText = "Bank Pengirim: " + bankName;
+    document.getElementById("selectedVA").innerText = "VA: " + vaNumber;
+    document.getElementById("vaContainer").classList.remove("hidden");
+    autoScrollTo("vaContainer");
+  }
+
+  function copyVA() {
+    let vaNumber = document.getElementById("selectedVA").innerText.split("VA: ")[1];
+    navigator.clipboard.writeText(vaNumber);
+    alert("Nomor VA disalin: " + vaNumber);
+  }
+
+  function filterBanks() {
+    let input = document.getElementById("searchBank").value.toLowerCase();
+    let bankList = document.getElementById("bankList").getElementsByTagName("button");
+    for (let i = 0; i < bankList.length; i++) {
+      let textValue = bankList[i].innerText.toLowerCase();
+      bankList[i].style.display = textValue.includes(input) ? "" : "none";
+    }
+  }
+</script>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function showNotification(type, title, message) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+            toast.setAttribute("data-type", type);
+            if (icon) {
+              icon.style.animation = "pulse 2s infinite";
+            }
+          },
+          customClass: {
+            popup: "glass-notification",
+            title: "notification-title",
+            htmlContainer: "notification-message",
+          },
+        });
+
+        Toast.fire({
+          icon: type,
+          title: title,
+          text: message,
+          background: "rgba(42, 67, 101, 0.85)",
+          color: "#fff",
+          iconColor: type === "success" ? "#4CAF50" : "#f44336",
+        });
+      }
+
+      function copyNumber(number, method) {
+        navigator.clipboard
+          .writeText(number)
+          .then(() => {
+            showNotification(
+              "success",
+              `<span class="font-semibold">${method}</span>`,
+              `Nomor ${method} telah disalin ke clipboard`
+            );
+          })
+          .catch(() => {
+            showNotification(
+              "error",
+              "Gagal",
+              "Gagal menyalin nomor. Silakan coba lagi."
+            );
+          });
+      }
+    </script>
+    
+    <!-- Footer -->
+<footer class="footer">
+  Property of ZeenPay ©2024-2025 |  
+  <a href="terms.html" class="footer-link">Privacy Policy</a>
+</footer>
+
+<style>
+  .footer {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 14px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .footer-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: normal;
+  }
+
+  .footer-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+  
+
+</body></html>
