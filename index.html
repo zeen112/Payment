@@ -440,6 +440,50 @@
     }
   }
 </script>
+      <script>
+  function copyVA() {
+    let vaNumber = document.getElementById("selectedVA").innerText.split("VA: ")[1];
+
+    // Salin nomor VA ke clipboard
+    navigator.clipboard.writeText(vaNumber).then(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Nomor VA Disalin!",
+        text: `Nomor ${vaNumber} telah disalin ke clipboard.`,
+        showConfirmButton: false,
+        timer: 2500,
+        background: "rgba(42, 67, 101, 0.85)",
+        color: "#fff",
+        iconColor: "#4CAF50",
+        customClass: {
+          popup: "glass-notification",
+          title: "notification-title",
+          htmlContainer: "notification-message",
+        },
+      });
+
+      // Tambah efek animasi pada tombol
+      let btn = document.querySelector(".payment-button");
+      btn.style.transform = "scale(1.05)";
+      btn.style.background = "linear-gradient(45deg, #34d399, #059669)";
+      setTimeout(() => {
+        btn.style.transform = "scale(1)";
+        btn.style.background = "linear-gradient(45deg, #6a11cb, #2575fc)";
+      }, 300);
+    }).catch(() => {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Menyalin",
+        text: "Terjadi kesalahan. Silakan coba lagi!",
+        showConfirmButton: false,
+        timer: 2500,
+        background: "rgba(42, 67, 101, 0.85)",
+        color: "#fff",
+        iconColor: "#f44336",
+      });
+    });
+  }
+      </script>
           </div>
           </div>
         </div>
