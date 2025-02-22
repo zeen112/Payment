@@ -1,0 +1,131 @@
+/* ====== Gaya Dasar ====== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #282a36, #5a67d8); /* Biru tua ke ungu cerah */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ====== Header ====== */
+header {
+    width: 100%;
+    background: rgba(42, 44, 56, 0.85); /* Biru gelap transparan */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ====== Container Utama ====== */
+.container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.15); /* Biru muda transparan */
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* ====== Formulir ====== */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus, textarea:focus {
+    border-color: #5a67d8;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ====== Tombol Kirim ====== */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #5a67d8, #282a36);
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #282a36, #5a67d8);
+    transform: scale(1.05);
+}
+
+/* ====== Link Kembali ====== */
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* ====== Footer ====== */
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(100%); /* Footer turun perlahan */
+    pointer-events: none;
+}
